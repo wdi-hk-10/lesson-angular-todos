@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="TodoApp">
+  <head>
+    <meta charset="utf-8">
+    <title>To Do App</title>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+    <script src="js/todosController.js"></script>
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+  <body ng-controller="TodosController">
+    <section id="main" class="container-fluid">
+      <header class="well well-sm">
+        <h1>Angular Todo App</h1>
+        <h3>You have {{todos.length}} todos to do!</h3>
+      </header>
+      <section>
+        <ul id="todos" class="list-group">
+          <li class="list-group-item" ng-repeat="todo in todos">
+            {{todo.task}}
+          </li>
+        </ul>
+        <form id='add-todo' class="form-inline" ng-submit="addTodo()">
+          <div class="form-group">
+            <input class="input-lg" text="text" class="form-control" placeholder='I need to...' ng-model="newTodo.task">
+          </div>
+        </form>
+        <p ng-show='newTodo.task'>About to add todo: <strong>{{newTodo.task}}</strong></p>
+      </section>
+    </section>
+  </body>
+</html>
