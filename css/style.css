@@ -3,6 +3,14 @@
   width: 80%;
 }
 
+#todos > .btn-group {
+  margin-bottom: 10px;
+}
+
+#subtotal {
+  margin-bottom: 10px;
+}
+
 #add-todo > div { 
   width: 100%;
 }

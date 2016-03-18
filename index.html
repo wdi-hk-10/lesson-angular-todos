@@ -17,16 +17,23 @@
         <h1>Angular Todo App</h1>
         <h3>You have {{todos.length}} todos to do!</h3>
       </header>
-      <section>
-        <ul id="todos" class="list-group">
-          <li class="list-group-item" ng-repeat="todo in todos">
+      <section id="todos" ng-init="pendingOnly = ''">
+        <div class="btn-group pull-right" data-toggle="buttons" role="group">
+          <button type="button" class="btn btn-default" ng-click="pendingOnly = ''">All</button>
+          <button type="button" class="btn btn-default" ng-click="pendingOnly = {done: false}">Pending Only</button>
+        </div>
+        <div class="clearfix"></div>
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="todo in todos | filter:pendingOnly as results">
             {{todo.task}}
             <button class="btn pull-right btn-xs" 
-                    ng-class="buttonState($index)" 
-                    ng-click="todo.done = true" 
-                    ng-disabled="todo.done">{{buttonLabel($index)}}</button>
+                    ng-class="todo.buttonClass" 
+                    ng-click="todo.completed()" 
+                    ng-disabled="todo.done">{{todo.buttonLabel}}</button>
           </li>
         </ul>
+        <div id="subtotal" class="pull-right">Showing {{results.length}} out of {{todos.length}} todos</div>
+        <div class="clearfix"></div>
         <form id='add-todo' class="form-inline" ng-submit="addTodo()">
           <div class="form-group">
             <input class="input-lg" text="text" class="form-control" placeholder='I need to...' ng-model="newTodo.task">
