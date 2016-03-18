@@ -21,6 +21,10 @@
         <ul id="todos" class="list-group">
           <li class="list-group-item" ng-repeat="todo in todos">
             {{todo.task}}
+            <button class="btn pull-right btn-xs" 
+                    ng-class="buttonState($index)" 
+                    ng-click="todo.done = true" 
+                    ng-disabled="todo.done">{{buttonLabel($index)}}</button>
           </li>
         </ul>
         <form id='add-todo' class="form-inline" ng-submit="addTodo()">
